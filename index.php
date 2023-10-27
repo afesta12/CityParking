@@ -10,5 +10,28 @@
 </head>
 <body>
     
+    <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
+
+        <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <!-- Logo -->
+        <img src="/images/wondervilleLogo.png" alt="Logo for Wonderville Parking">
+
+            <!-- Spot reservation -->
+            <a href="#" class="text-center text-white bg-blue-500 hover:bg-blue-700 
+                            focus:ring-4 focus:ring-blue-300 font-medium 
+                            rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
+                            focus:outline-none dark:focus:ring-blue-800">
+                            Reserve Your Spot
+            </a>
+            <!-- Admin login -->
+            <a href="/adminlogin.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
+                            focus:ring-4 focus:ring-blue-300 font-medium 
+                            rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  
+                            focus:outline-none dark:focus:ring-blue-800">
+                            Admin Login
+            </a>
+        </div>
+    </main>
+
 </body>
 </html>
