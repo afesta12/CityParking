@@ -15,24 +15,47 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Date picker CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/datepicker.min.js"></script>
 </head>
 <body>
     
-<!-- TODO make admin dashboard / set up DB connections -->
-<!-- TODO need logout button / logout if admin leaves dashboard page -->
     <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
+        <form action="" method="post" class="flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="flex justify-evenly">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="start">
+                        Start Date
+                    </label>
+                    <input name="start" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="end">
+                        End Date
+                    </label>
+                    <input name="end" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                </div>
+            </div>
+            
+            <div class="flex justify-center">
+                <button name="zones" class="px-8 mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+                    Show Zones
+                </button>
+            </div>
+        </form>
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 bg-green-200">
+            <table class="w-full text-center text-emerald-400 text-base">
+                <thead class="text-base text-gray-200 bg-emerald-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Zone Number
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Spaces
+                            Designated Spots
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Rate
@@ -42,39 +65,102 @@
                         </th>
                     </tr>
                 </thead>
-        <?php
-        
-            // Query
-            $sql = "SELECT * FROM summary";
-
-            // Execute query
-            $view = $connection->query($sql);
-
-            // Error handling
-            if ($view) {
-
-                echo "<tbody>";
+                <tbody>
+                <?php
                 
-                while ($row = $view->fetch_assoc()) {
+                    if (isset($_SESSION["viewData"])) {
+                        $rows = $_SESSION["viewData"];
+                        foreach ($rows as $row) {
+                            $zoneNumber = $row["zoneNumber"];
+                            $space = $row["space"];
+                            $rate = $row["rate"];
+                            $reservationCount = $row["reservationCount"];
+                    
+                            // Row
+                            echo '<tr class="text-emerald-400 bg-green-200 border-b">';
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$zoneNumber</td>";
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$space</td>";
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$rate</td>";
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$reservationCount</td>";
+                            echo '</tr>';
+                        }
+                    }
+                ?>
+            
+    </main>
+</body>
+</html>
 
+<?php 
+
+if (isset($_POST["zones"])) {
+    // Check empty fields
+    if (empty($_POST["start"]) || empty($_POST["end"])) {
+        echo '<script>alert("Invalid date range.")</script>';
+    } else {
+        $startDate = $_POST["start"];
+        $endDate = $_POST["end"];
+
+        // Drop the view if it already exists
+        $dropViewSQL = "DROP VIEW IF EXISTS summary";
+        $connection->query($dropViewSQL);
+
+        // Create the view
+        $createViewSQL = "CREATE VIEW summary AS
+            SELECT
+                Lot.ZoneNumber,
+                space,
+                Lot.rate,
+                COUNT(*) AS reservation_count
+            FROM
+                Lot
+            JOIN
+                Reservation ON Lot.ZoneNumber = Reservation.ZoneNumber
+            WHERE
+                space > 0
+                AND Reservation.date >= '$startDate'
+                AND Reservation.date <= '$endDate'  
+            GROUP BY
+                Lot.ZoneNumber, space, rate;";
+
+        // Execute the CREATE VIEW query
+        $createViewResult = $connection->query($createViewSQL);
+
+        if ($createViewResult) {
+            // View created successfully, now fetch data from the view
+            $selectViewSQL = "SELECT * FROM summary";
+            $viewData = $connection->query($selectViewSQL);
+
+            if ($viewData) {
+
+                $rows = [];
+                while ($row = $viewData->fetch_assoc()) {
                     $zoneNumber = $row["ZoneNumber"];
                     $space = $row["space"];
                     $rate = $row["rate"];
                     $reservationCount = $row["reservation_count"];
 
-                    // Row
-                    echo '<tr class="bg-white border-b">';
-                    echo "<td class='px-6 py-4'>$zoneNumber</td>";
-                    echo "<td class='px-6 py-4'>$space</td>";
-                    echo "<td class='px-6 py-4'>$rate</td>";
-                    echo "<td class='px-6 py-4'>$reservationCount</td>";
+                    $rows[] = [
+                        'zoneNumber' => $zoneNumber,
+                        'space' => $space,
+                        'rate' => $rate,
+                        'reservationCount' => $reservationCount,
+                    ];
                 }
+
+                $_SESSION['viewData'] = $rows;
+                header("Location: /admin.php");
+                exit;
+
+            } else {
+                // Handle error fetching data from the view
+                echo "Error fetching data from the view: " . $connection->error;
+                
             }
-        
-        ?>
-            </table>
-        </div>
-        </div>
-    </main>
-</body>
-</html>
+        } else {
+            // Handle error creating the view
+            echo "Error creating the view: " . $connection->error;
+        }
+    }
+}
+?>

@@ -4,7 +4,7 @@
     $server = "localhost";
     $user = "root";
     $password = "mysql";
-    $database = "parking";
+    $database = "cityParking";
 
     // Check connection
     try {
