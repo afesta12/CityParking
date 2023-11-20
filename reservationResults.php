@@ -55,7 +55,7 @@
     $confirmation = $_SESSION["confirmation"];
     
     $sql = "SELECT ConformationNum, Reservation.UNumber, ZoneNumber, Date, TimeIn, TimeOut, Rate, Status
-    FROM Reservation, User WHERE user.UNumber = Reservation.UNumber and ConformationNum = '$confirmation' or  user.Phone = '$cellphone'";
+    FROM Reservation, User WHERE user.UNumber = Reservation.UNumber and (ConformationNum = '$confirmation' or  user.Phone = '$cellphone')";
     $result = $connection->query($sql);
 
     if ($result) {
