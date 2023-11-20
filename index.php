@@ -27,6 +27,12 @@
                             focus:outline-none">
                             Reserve Your Spot
             </a>
+            <!-- Current and past reservations -->
+            <a href="/seeReservations.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
+                            font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  
+                            focus:outline-none">
+                            See Your Reservations
+            </a>
             <!-- Admin login -->
             <a href="/adminlogin.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
                             font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  
