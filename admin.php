@@ -83,7 +83,7 @@
                             echo '<tr class="text-emerald-400 bg-green-200 border-b">';
                             echo "<td class='px-6 py-4 text-lg font-medium'>$zoneNumber</td>";
                             echo "<td class='px-6 py-4 text-lg font-medium'>$space</td>";
-                            echo "<td class='px-6 py-4 text-lg font-medium'>$rate</td>";
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$$rate</td>";
                             echo "<td class='px-6 py-4 text-lg font-medium'>$reservationCount</td>";
                             echo '</tr>';
                         }

@@ -49,7 +49,7 @@
 
 <?php 
 
-    // Search for spot
+    // Add
     if(isset($_POST["add"])){
 
         // Check empty fields
@@ -59,15 +59,16 @@
             
         } else {
 
+            // Variables
             $zoneName = $_POST["name"];
             $capacity = $_POST["capacity"];
-
             $table = "Lot_Info";
 
+            // Query / connection
             $sql = "INSERT INTO $table (ZoneName, Capacity) VALUES ('$zoneName', $capacity)";
-
             $connection->query($sql);
 
+            // Alert -> wait -> redirect so alert visible
             if ($connection) {
 
                 echo "<script>alert('$zoneName added')</script>";
@@ -75,6 +76,7 @@
             } else {
 
                 echo "<script>alert('Error adding zone.')</script>";
+                echo "<script>window.location.href='addZone.php';</script>";
             }
         }
     }
