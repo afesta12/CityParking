@@ -17,8 +17,8 @@
     
     <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
-        <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <img src="/images/wondervilleLogo.png" alt="">
+        <form action="reserveSpot.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <img src="/images/wondervilleLogo.png" alt="" style="display: block; margin: auto;">
             <!-- Name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -26,7 +26,6 @@
                 </label>
                 <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
             </div>
-
             <!-- Cellphone -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="cellphone">
@@ -34,20 +33,22 @@
                 </label>
                 <input name="cellphone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="cellphone" type="text" placeholder="Cellphone #">
             </div>
-
             <!-- Date -->
             <div class="mb-6">
-                <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="start">
-                        Reservation Date
-                    </label>
-                    <input name="date" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                </div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+                    Reservation Date
+                </label>
+                <input name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" placeholder="Reservation Date">
             </div>
-
-            <div class="flex items-center justify-center">
-                <button name="search" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
-                    Search available spots
+            <!-- Save above info into session variables, next page to search for spots -->
+            <div class="flex items-center justify-center mb-4">
+                <button name="zones" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+                    Search Available Zones
+                </button>
+            </div>
+            <div class="flex items-center justify-center mb-4">
+                <button name="distance" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+                    Search Distance Between Zones and Venues
                 </button>
             </div>
         </form>
@@ -56,23 +57,27 @@
 </html>
 
 <?php 
-
-    // Search for spot
-    if(isset($_POST["search"])){
-
-        // Check empty fields
-        if (empty($_POST["name"]) || empty($_POST["cellphone"]) || empty($_POST["date"])) {
+    if(isset($_POST["zones"]) || isset($_POST["distance"])){
+        if (empty($_POST["date"]) || empty($_POST["cellphone"]) || empty($_POST["name"])) {
         
-            echo '<script>alert("Name, cellphone or date left empty.")</script>';
-        } else {
-
-            // Set session variables for reservation and redirect
-            $_SESSION["name"] = $_POST["name"];
+            echo '<script>alert("No field can be left blank.")</script>';
+        }
+        else {
             $_SESSION["cellphone"] = $_POST["cellphone"];
             $_SESSION["date"] = $_POST["date"];
+            $_SESSION["name"] = $_POST["name"];
 
-            // TODO change redirect once page is finished
-            header("Location: ");
+            $date = new DateTime($_POST["date"]);
+            $currDate = new DateTime(date("y-m-d"));
+
+            if ($date == $currDate) {
+                echo '<script>alert("Reservation must be made at least 1 day ahead.")</script>';
+            }
+            else {
+                if(isset($_POST["zones"])) {header("Location: zoneSpotResults.php");}
+                else {header("Location: distSpotResults.php");}
+                
+            }
         }
     }
 ?>
