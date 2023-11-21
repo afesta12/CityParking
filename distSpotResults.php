@@ -2,6 +2,19 @@
 <?php 
     session_start();
     include("database.php");
+
+    if(isset($_POST["distance"])){ 
+        $vName = $_POST["venue"];
+        $zoneNum = $_POST["zone"];
+        $vNumResult = $connection->query("SELECT VNumber FROM Venue WHERE VName = '$vName'");
+        $vNumRow = $vNumResult->fetch_assoc();
+        $vNum = $vNumRow['VNumber'];
+        $sql6 = "SELECT Distance FROM Distance WHERE VNumber = $vNum and ZoneNumber = $zoneNum";
+        $result6 = $connection->query($sql6);
+        $distRow = $result6->fetch_assoc();
+        $distance = $distRow["Distance"];
+        $_SESSION["distance"] = $distance;
+    }   
 ?>
 
 <!DOCTYPE html>
@@ -167,19 +180,4 @@
             if ($result5) header("Location: /spotConfirmation.php");  
         }
     }
-
-    // TODO: correct distance does not appear until "See Distance" is clicked twice
-    if(isset($_POST["distance"])){ 
-        $vName = $_POST["venue"];
-        $zoneNum = $_POST["zone"];
-        $vNumResult = $connection->query("SELECT VNumber FROM Venue WHERE VName = '$vName'");
-        $vNumRow = $vNumResult->fetch_assoc();
-        $vNum = $vNumRow['VNumber'];
-        $sql6 = "SELECT Distance FROM Distance WHERE VNumber = $vNum and ZoneNumber = $zoneNum";
-        $result6 = $connection->query($sql6);
-        $distRow = $result6->fetch_assoc();
-        $distance = $distRow["Distance"];
-        $_SESSION["distance"] = $distance;
-    }
-
 ?>
