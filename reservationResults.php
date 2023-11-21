@@ -150,11 +150,6 @@
 
             // If at least 3 days before current date...
             if ($currDate <= $resDate) {
-                // ... Get UNumber
-                $sql2 = "SELECT UNumber FROM Reservation WHERE Date = '$date'";
-                $result2 = $connection->query($sql2);
-                $row = $result2->fetch_assoc();
-                $userNum = $row['UNumber'];
                 // Update status to 'Cancelled'
                 $sql3 = "UPDATE Reservation SET Status = 'Cancelled' WHERE ConformationNum = $confNum";
                 $result3 = $connection->query($sql3);
