@@ -37,6 +37,30 @@
                 <input name="capacity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="cellphone" type="text" placeholder="Capacity">
             </div>
 
+            <!-- Date -->
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+                    Event Date
+                </label>
+                <input name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" placeholder="Reservation Date">
+            </div>
+
+            <!-- Available spaces -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="space">
+                    Number of Spots Reservable
+                </label>
+                <input name="space" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="cellphone" type="text" placeholder="Capacity">
+            </div>
+
+            <!-- Rate -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="rate">
+                    Spot Rate
+                </label>
+                <input name="rate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="cellphone" type="text" placeholder="Capacity">
+            </div>
+
             <div class="flex items-center justify-center">
                 <button name="add" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
                     Add Zone
@@ -62,11 +86,24 @@
             // Variables
             $zoneName = $_POST["name"];
             $capacity = $_POST["capacity"];
+            $date = $_POST["date"];
+            $space = $_POST["space"];
+            $rate = $_POST["rate"];
             $table = "Lot_Info";
 
             // Query / connection
             $sql = "INSERT INTO $table (ZoneName, Capacity) VALUES ('$zoneName', $capacity)";
             $connection->query($sql);
+
+            // Get zone number
+            $zoneNumberQuery = "SELECT ZoneNumber FROM $table WHERE ZoneName = '$zoneName'";
+            $res = $connection->query($zoneNumberQuery);
+            $value = $res->fetch_assoc();
+            $number = $value["ZoneNumber"];
+
+            // Insert into lot
+            $lotSql = "INSERT INTO lot VALUES ('$number', '$date', '$space', '$rate')";
+            $connection->query($lotSql);
 
             // Alert -> wait -> redirect so alert visible
             if ($connection) {
