@@ -51,6 +51,12 @@
         <thead class="text-xs text-gray-700 bg-green-200">
             <tr>
                 <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone Number
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Confirmation Number
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -80,7 +86,7 @@
     $cellphone = $_SESSION["cellphone"];
     $confirmation = $_SESSION["confirmation"];
     
-    $sql = "SELECT ConformationNum, Reservation.UNumber, ZoneNumber, Date, TimeIn, TimeOut, Rate, Status
+    $sql = "SELECT Name, Phone, ConformationNum, Reservation.UNumber, ZoneNumber, Date, TimeIn, TimeOut, Rate, Status
     FROM Reservation, User WHERE user.UNumber = Reservation.UNumber and (ConformationNum = '$confirmation' or  user.Phone = '$cellphone')";
     $result = $connection->query($sql);
 
@@ -95,8 +101,13 @@
             $timeOut = $row["TimeOut"];
             $rate = $row["Rate"];
             $status = $row["Status"];
+            $name = $row["Name"];
+            $phone = $row["Phone"];
+            
 
             echo '<tr class="bg-white border-b">';
+            echo "<td class='px-6 py-4'>$name</td>";
+            echo "<td class='px-6 py-4'>$phone</td>";
             echo "<td class='px-6 py-4'>$confirmationNum</td>";
             echo "<td class='px-6 py-4'>$userNum</td>";
             echo "<td class='px-6 py-4'>$zoneNum</td>";
@@ -145,9 +156,11 @@
                 $row = $result2->fetch_assoc();
                 $userNum = $row['UNumber'];
                 // Update status to 'Cancelled'
-                $sql3 = "UPDATE Reservation SET Status = 'Cancelled' WHERE Date = '$date' and UNumber = $userNum";
+                $sql3 = "UPDATE Reservation SET Status = 'Cancelled' WHERE ConformationNum = $confNum";
                 $result3 = $connection->query($sql3);
                 echo '<script>alert("Reservation cancelled.")</script>';
+                // Update page to reflect changes
+                echo '<script>window.location.href = window.location.href;</script>';
             } else { // ... else notify user
                 echo '<script>alert("Cancellations must be made at least 3 days in advance.")</script>';
             }
