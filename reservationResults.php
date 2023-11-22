@@ -81,13 +81,7 @@
                     Date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Time In
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Time Out
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Rate
+                    Rate/hr
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Status
@@ -98,7 +92,7 @@
     $cellphone = $_SESSION["cellphone"];
     $confirmation = $_SESSION["confirmation"];
     
-    $sql = "SELECT Name, Phone, ConformationNum, Reservation.UNumber, ZoneNumber, Date, TimeIn, TimeOut, Rate, Status
+    $sql = "SELECT Name, Phone, ConformationNum, Reservation.UNumber, ZoneNumber, Date, Rate, Status
     FROM Reservation, User WHERE user.UNumber = Reservation.UNumber and (ConformationNum = '$confirmation' or  user.Phone = '$cellphone')";
     $result = $connection->query($sql);
 
@@ -109,8 +103,6 @@
             $userNum = $row["UNumber"];
             $zoneNum = $row["ZoneNumber"];
             $date = $row["Date"];
-            $timeIn = $row["TimeIn"];
-            $timeOut = $row["TimeOut"];
             $rate = $row["Rate"];
             $status = $row["Status"];
             $name = $row["Name"];
@@ -124,8 +116,6 @@
             echo "<td class='px-6 py-4'>$userNum</td>";
             echo "<td class='px-6 py-4'>$zoneNum</td>";
             echo "<td class='px-6 py-4'>$date</td>";
-            echo "<td class='px-6 py-4'>$timeIn</td>";
-            echo "<td class='px-6 py-4'>$timeOut</td>";
             echo "<td class='px-6 py-4'>$rate</td>";
             echo "<td class='px-6 py-4'>$status</td>";
         }
