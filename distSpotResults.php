@@ -52,15 +52,30 @@
                         <label for="zone">Select A Zone:</label>
                         <select name="zone" id="zone" class="w-24 bg-white border border-gray-400 hover:border-gray-500 px-2 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                             <?php
-                                // TODO: date ???
+                                $date = $_SESSION["date"];
                                 $connection->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-                                $sql = "SELECT ZoneNumber FROM available_spot WHERE available > 0";
+                                $sql = "SELECT ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
+                                        Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Rate FROM Lot GROUP BY ZoneNumber";
                                 $result = $connection->query($sql);
+
+                                // get zones that allow reservations on chosen date
+                                $sql2 = "SELECT ZoneNumber FROM Lot WHERE Date = '$date'";
+                                $result2 = $connection->query($sql2);
+                                $zoneArr = array();
+                                while ($row = $result2->fetch_assoc()) {
+                                    $zoneArr[] = $row["ZoneNumber"];
+                                } 
 
                                 if ($result) {
                                     while ($row = $result->fetch_assoc()) {
                                         $zoneNumber = $row["ZoneNumber"];
-                                        echo "<option value='$zoneNumber'>$zoneNumber</option>";
+
+                                        // only show zones where lot has chosen date 
+                                        foreach ($zoneArr as $zoneTest) {
+                                            if ($zoneTest == $zoneNumber) {
+                                                echo "<option value='$zoneNumber'>$zoneNumber</option>";
+                                            }
+                                        }
                                     }
                                 }
                             ?>
@@ -70,7 +85,6 @@
                     <label for="venue">Select A Venue:</label>
                     <select name="venue" id="venue" class="w-24 bg-white border border-gray-400 hover:border-gray-500 px-2 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <?php
-                            // TODO: date ???
                             $sql = "SELECT VName FROM Venue";
                             $result = $connection->query($sql);
 
@@ -90,7 +104,7 @@
             <div class="relative overflow-x-auto mt-6">
                 <div id="distanceBox" class="p-4 mb-4 bg-gray-100 rounded">
                     <?php
-                            // distance (in miles??)
+                            // distance
                             if (isset($_SESSION["distance"])) {
                                 echo 'Distance: ' . $_SESSION["distance"] . ' miles';
                             }
@@ -110,29 +124,43 @@
                             Number of Available Spots
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Rate
+                            Rate/hr 
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        // TODO: date ???
-                        // $date = $_SESSION["date"];
+                        $date = $_SESSION["date"];
                         $connection->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-                        $sql = "SELECT * FROM available_spot WHERE available > 0";
+                        $sql = "SELECT ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
+                                Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Rate FROM Lot GROUP BY ZoneNumber";
                         $result = $connection->query($sql);
+
+                        // get zones that allow reservations on chosen date
+                        $sql2 = "SELECT ZoneNumber FROM Lot WHERE Date = '$date'";
+                        $result2 = $connection->query($sql2);
+                        $zoneArr = array();
+                        while ($row = $result2->fetch_assoc()) {
+                            $zoneArr[] = $row["ZoneNumber"];
+                        }                    
 
                         if ($result) {
                             while ($row = $result->fetch_assoc()) {
                                 $zone = $row["ZoneNumber"];
-                                $numSpots = $row["available"];
-                                $rate = $row["rate"];
 
-                                echo '<tr class="bg-white border-b">';
-                                echo "<td class='px-6 py-4'>$zone</td>";
-                                echo "<td class='px-6 py-4'>$numSpots</td>";
-                                echo "<td class='px-6 py-4'>$rate</td>";
-                                echo '</tr>';
+                                // only show zones where lot has chosen date 
+                                foreach ($zoneArr as $zoneTest) {
+                                    if ($zoneTest == $zone) {
+                                        $numSpots = $row["available"];
+                                        $rate = $row["Rate"];
+
+                                        echo '<tr class="bg-white border-b">';
+                                        echo "<td class='px-6 py-4'>$zone</td>";
+                                        echo "<td class='px-6 py-4'>$numSpots</td>";
+                                        echo "<td class='px-6 py-4'>$rate</td>";
+                                        echo '</tr>';
+                                    }
+                                }
                             }
                         }
                     ?>
@@ -167,16 +195,14 @@
         $userNum = $row['UNumber'];
 
         // get rate
-        $sql3 = "SELECT Rate FROM available_spot WHERE ZoneNumber = $zoneNum";
+        $sql3 = "SELECT Rate FROM Lot WHERE ZoneNumber = $zoneNum";
         $result3 = $connection->query($sql3);
         $rateRow = $result3->fetch_assoc();
         $rate = $rateRow['Rate'];
 
-        // TODO: TimeIn & TimeOut ???
-
         // reserve spot for user 
-        $sql4 = "INSERT INTO Reservation (UNumber, ZoneNumber, Date, TimeIn, TimeOut, Rate, Status)
-        VALUES ($userNum, $zoneNum, '$date', '10:00:00', '11:00:00', $rate, 'Active')";
+        $sql4 = "INSERT INTO Reservation (UNumber, ZoneNumber, Date, Rate, Status)
+        VALUES ($userNum, $zoneNum, '$date', $rate, 'Active')";
         $result4 = $connection->query($sql4);
 
         if ($result4) {
