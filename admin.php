@@ -21,14 +21,28 @@
 </head>
 <body>
     
-    <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
+    <header class="bg-emerald-400 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">Wonderville Parking</div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
+                    <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
+                    <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
+                    <li><a href="#" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="flex flex-col items-center  h-screen w-screen bg-green-200">
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="flex justify-center">
             <img class="h-32 w-32" src="/images/wondervilleLogo.png" alt="">
         </div>
 
-        <form action="" method="post" class="flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form action="" method="post" class="flex-col bg-white rounded px-8 pt-6 pb-8 mb-4">
             <div class="flex justify-evenly">
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="start">
@@ -51,6 +65,7 @@
             </div>
         </form>
         <div class="relative overflow-x-auto">
+            <h3 class="font-bold text-emerald-400 pb-3">Admin summary (most recent results shown):</h3>
             <table class="w-full text-center text-emerald-400 text-base">
                 <thead class="text-base text-gray-200 bg-emerald-400">
                     <tr>

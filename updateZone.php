@@ -16,7 +16,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
+<header class="bg-emerald-400 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">Wonderville Parking</div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
+                    <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
+                    <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
+                    <li><a href="#" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>   
     <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
         <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
