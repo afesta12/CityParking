@@ -3,7 +3,7 @@
     session_start();
     include("database.php");
 
-    if(isset($_POST["distance"])){ 
+    if(isset($_POST["distance"]) && isset($_POST["zone"])){ 
         $vName = $_POST["venue"];
         $zoneNum = $_POST["zone"];
         $vNumResult = $connection->query("SELECT VNumber FROM Venue WHERE VName = '$vName'");
@@ -69,10 +69,11 @@
                                 if ($result) {
                                     while ($row = $result->fetch_assoc()) {
                                         $zoneNumber = $row["ZoneNumber"];
+                                        $numSpots = $row["available"];
 
-                                        // only show zones where lot has chosen date 
+                                        // only show zones where lot has chosen date and with available spots
                                         foreach ($zoneArr as $zoneTest) {
-                                            if ($zoneTest == $zoneNumber) {
+                                            if ($zoneTest == $zoneNumber && $numSpots > 0) {
                                                 echo "<option value='$zoneNumber'>$zoneNumber</option>";
                                             }
                                         }
@@ -147,13 +148,12 @@
                         if ($result) {
                             while ($row = $result->fetch_assoc()) {
                                 $zone = $row["ZoneNumber"];
+                                $numSpots = $row["available"];
+                                $rate = $row["Rate"];
 
-                                // only show zones where lot has chosen date 
+                                // only show zones where lot has chosen date and with available spots
                                 foreach ($zoneArr as $zoneTest) {
-                                    if ($zoneTest == $zone) {
-                                        $numSpots = $row["available"];
-                                        $rate = $row["Rate"];
-
+                                    if ($zoneTest == $zone && $numSpots > 0) {
                                         echo '<tr class="bg-white border-b">';
                                         echo "<td class='px-6 py-4'>$zone</td>";
                                         echo "<td class='px-6 py-4'>$numSpots</td>";
@@ -173,7 +173,7 @@
 </html>
 
 <?php
-    if(isset($_POST["submit"])){
+    if(isset($_POST["submit"]) && isset($_POST["zone"])) {
         $zoneNum = $_POST["zone"];
         $cellphone = $_SESSION["cellphone"];
         $name = $_SESSION["name"];
