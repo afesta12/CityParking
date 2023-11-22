@@ -30,7 +30,7 @@
             </nav>
         </div>
 </header>
-    <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
+    <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
         <form action="" method="post" class="flex flex-col items-center justify-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <img class="h-32 w-32" src="/images/wondervilleLogo.png" alt="">
