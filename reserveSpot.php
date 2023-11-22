@@ -1,6 +1,7 @@
 <!-- Start session -->
 <?php 
     session_start();
+    include("database.php");
 ?>
 
 <!DOCTYPE html>
@@ -77,12 +78,26 @@
             $_SESSION["cellphone"] = $_POST["cellphone"];
             $_SESSION["date"] = $_POST["date"];
             $_SESSION["name"] = $_POST["name"];
+            $dateStr =  $_POST["date"];
 
             $date = new DateTime($_POST["date"]);
             $currDate = new DateTime(date("y-m-d"));
 
+            // check number of lots that have selected date
+            $sql = "SELECT count(*) FROM lot WHERE Date = '$dateStr'";
+            $result = $connection->query($sql);
+            $row = $result->fetch_assoc();
+            $dateCount = $row['count(*)'];
+
+            // if date current date ...
             if ($date == $currDate) {
+                // cannot reserve
                 echo '<script>alert("Reservation must be made at least 1 day ahead.")</script>';
+            }
+            // if lot does not reserve spots that date ...
+             if ($dateCount == 0) {
+                // cannot reserve
+                echo '<script>alert("No lot reserves spots this date.")</script>';
             }
             else {
                 if(isset($_POST["zones"])) {header("Location: zoneSpotResults.php");}
