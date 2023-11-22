@@ -26,7 +26,7 @@
             </nav>
         </div>
 </header>
-    <main class="flex flex-col items-center justify-center h-screen w-screen bg-green-200">
+    <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Admin login  -->
         <form action="adminlogin.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <img src="/images/wondervilleLogo.png" alt="">

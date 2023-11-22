@@ -1,5 +1,8 @@
 <!-- Start session -->
-<?php 
+<?php
+
+    // buffer output to avoid header error
+    ob_start();
     session_start();
 
     // Include database file
@@ -105,7 +108,8 @@
                     } 
 
                     // No reservations in date range
-                    $size = count($_SESSION["viewData"]);
+                    $size = isset($_SESSION["viewData"]) 
+                        && count($_SESSION["viewData"]) ? count($_SESSION["viewData"]) : 0;
 
                     if ($size == 0) {
                             echo '<tr class="text-emerald-400 bg-green-200 border-b">';
@@ -181,7 +185,7 @@ if (isset($_POST["zones"])) {
 
                 $_SESSION['viewData'] = $rows;
                 header("Location: /admin.php");
-                exit;
+                exit();
 
             } else {
                 // Handle error fetching data from the view
