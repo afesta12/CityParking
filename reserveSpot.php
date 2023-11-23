@@ -95,7 +95,7 @@
                 echo '<script>alert("Reservation must be made at least 1 day ahead.")</script>';
             }
             // if lot does not reserve spots that date ...
-             if ($dateCount == 0) {
+            else if ($dateCount == 0) {
                 // cannot reserve
                 echo '<script>alert("No lot reserves spots this date.")</script>';
             }
