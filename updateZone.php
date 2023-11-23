@@ -24,7 +24,7 @@
                     <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
                     <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
                     <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                    <li><a href="#" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
                     <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                 </ul>
             </nav>
@@ -34,6 +34,15 @@
         <!-- Spot reservation  -->
         <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <img src="/images/wondervilleLogo.png" alt="">
+        
+            <!-- Date -->
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+                    Event Date
+                </label>
+                    <input name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" placeholder="Reservation Date">
+            </div>
+        
             <!-- Zone name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -82,6 +91,7 @@
 
             // Variables
             $zoneName = $_POST["name"];
+            $date = $_POST["date"];
             $newCapacity = $_POST["capacity"];
             $newRate = $_POST["rate"];
 
@@ -96,6 +106,17 @@
                 $value = $res->fetch_assoc();
                 $number = $value["ZoneNumber"];
             
+                $sql = "SELECT * from $table WHERE ZoneNumber = '$number' AND date = '$date'";
+                $res = $connection->query($sql);
+
+                // Check name and date exist
+                $exists = (bool) $res->fetch_assoc();
+
+                if (!$exists) {
+
+                    echo "<script>alert('Error, zone not found.')</script>";
+                    echo "<script>window.location.href='updateZone.php';</script>";
+                }
 
                 // Query / connection
                 $sql = "UPDATE $table SET";
@@ -111,14 +132,14 @@
 
                 if (strlen($sql) > strlen("UPDATE $table SET")) {
 
-                    $sql .= " WHERE ZoneNumber = '$number'";
+                    $sql .= " WHERE ZoneNumber = '$number' AND date = '$date'";
                     $connection->query($sql);
 
                     // Alert -> wait -> redirect so alert visible
                     if ($connection) {
 
                         echo "<script>alert('Values updated.')</script>";
-                        echo "<script>window.location.href='updateZone.php';</script>";
+                        echo "<script>window.location.href='admin.php';</script>";
                     } else {
 
                         echo "<script>alert('Error updating.')</script>";

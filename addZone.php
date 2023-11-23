@@ -24,7 +24,7 @@
                     <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
                     <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
                     <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                    <li><a href="#" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
                     <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                 </ul>
             </nav>
@@ -160,7 +160,7 @@
             if ($connection) {
 
                 echo "<script>alert('$zoneName added')</script>";
-                echo "<script>window.location.href='addZone.php';</script>";
+                echo "<script>window.location.href='admin.php';</script>";
             } else {
 
                 echo "<script>alert('Error adding zone.')</script>";

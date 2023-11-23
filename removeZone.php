@@ -24,7 +24,7 @@
                     <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
                     <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
                     <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                    <li><a href="#" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
                     <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                 </ul>
             </nav>
@@ -36,10 +36,17 @@
         <img src="/images/wondervilleLogo.png" alt="">
             <!-- Zone name -->
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    Zone name
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="number">
+                    Zone Number
                 </label>
-                <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Zone Name">
+                <input name="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Zone Name">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+                    Date
+                </label>
+                <input name="date" type="date" class="mb-4 appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
             </div>
 
             <div class="flex items-center justify-center">
@@ -54,30 +61,35 @@
 
 <?php 
 
-    // TODO: Add remove zone queries =)
     // Remove
     if(isset($_POST["remove"])){
 
         // Check empty fields
-        if (empty($_POST["name"])) {
+        if (empty($_POST["number"])) {
         
             echo '<script>alert("Zone name left empty.")</script>';
             
         } else {
 
             // Variables
-            $zoneName = $_POST["name"];
-            $table = "Lot_Info";
+            $zoneNumber = $_POST["number"];
+            $date = $_POST["date"];
 
             // Query / connection
-            $sql = "INSERT INTO $table (ZoneName, Capacity) VALUES ('$zoneName', $capacity)";
-            $connection->query($sql);
+            $sql = "SELECT count(*) 
+                    from Reservation 
+                    where 
+                        ZoneNumber = '$zoneNumber' AND date = '$date' AND Status = 'Active'";
+            $num = $connection->query($sql);
 
-            // Alert -> wait -> redirect so alert visible
-            if ($connection) {
+            if ($connection && $num->fetch_assoc()["count(*)"] == 0) {
 
-                echo "<script>alert('$zoneName removed.')</script>";
-                echo "<script>window.location.href='removeZone.php';</script>";
+                $sql = "UPDATE Lot
+                        SET space = 0
+                        WHERE ZoneNumber = '$zoneNumber' AND date = '$date'";
+
+                echo "<script>alert('Zone $zoneNumber removed on date $date.')</script>";
+                echo "<script>window.location.href='admin.php';</script>";
             } else {
 
                 echo "<script>alert('Error removing zone.')</script>";
