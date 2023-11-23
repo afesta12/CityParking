@@ -38,28 +38,30 @@
             </nav>
         </div>
     </header>
+
     <main class="flex flex-col items-center  h-screen w-screen bg-green-200">
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div class="flex justify-center">
-            <img class="h-32 w-32" src="/images/wondervilleLogo.png" alt="">
-        </div>
+            <div class="flex justify-center">
+                <img class="h-32 w-32" src="/images/wondervilleLogo.png" alt="">
+            </div>
 
         <form action="" method="post" class="flex-col items-center bg-white rounded-md px-8 pt-6 pb-8 mb-4 max-w-md mx-auto">
-    <div class="text-center mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
-            Date
-        </label>
-        <input name="date" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-    </div>
-    <div class="flex justify-center">
-        <button name="zones" class="px-8 mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
-            Generate Revenue Report
-        </button>
-    </div>
-</form>
-        <div class="relative overflow-x-auto">
-            <h3 class="font-bold text-emerald-400 pb-3">Admin summary (most recent results shown):</h3>
+            <div class="text-center mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+                    Date
+                </label>
+                <input name="date" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+            </div>
+            <div class="flex justify-center">
+                <button name="zones" class="shadow-md px-8 mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+                    Generate Revenue Report
+                </button>
+            </div>
+        </form>
+
+        <div class="shadow-sm rounded-md relative overflow-x-auto ">
+            <h3 class="font-bold text-emerald-400 pb-3">Revenue Report (most recent results shown):</h3>
             <table class="w-full text-center text-emerald-400 text-base">
                 <thead class="text-base text-gray-200 bg-emerald-400">
                     <tr>
@@ -104,7 +106,7 @@
                             echo "<td class='px-6 py-4 text-lg font-medium'>$space</td>";
                             echo "<td class='px-6 py-4 text-lg font-medium'>$reservationCount</td>";
                             echo "<td class='px-6 py-4 text-lg font-medium'>$$rate</td>";
-                            echo "<td class='px-6 py-4 text-lg font-medium'>$revenue</td>";
+                            echo "<td class='px-6 py-4 text-lg font-medium'>$$revenue</td>";
                             echo '</tr>';
                         }
                     } 
@@ -125,7 +127,6 @@
                             
                     }
                 ?>
-            
     </main>
 </body>
 </html>
@@ -133,6 +134,7 @@
 <?php 
 
 if (isset($_POST["zones"])) {
+    
     // Check empty fields
     if (empty($_POST["date"])) {
         echo '<script>alert("Invalid date.")</script>';

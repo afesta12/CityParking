@@ -45,10 +45,10 @@
         
             <!-- Zone name -->
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    Zone name
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="number">
+                    Zone Number
                 </label>
-                <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Zone name">
+                <input name="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Zone Number">
             </div>
 
             <!-- Capacity -->
@@ -83,77 +83,73 @@
     if(isset($_POST["update"])){
 
         // Check empty fields -> capacity or rate empty then leave values set as original values
-        if (empty($_POST["name"])) {
+        if (empty($_POST["number"])) {
         
-            echo '<script>alert("Zone name left empty.")</script>';
+            echo '<script>alert("Zone number left empty.")</script>';
             
         } else {
 
             // Variables
-            $zoneName = $_POST["name"];
+            $zoneNumber = $_POST["number"];
             $date = $_POST["date"];
             $newCapacity = $_POST["capacity"];
             $newRate = $_POST["rate"];
 
-            $table = "Lot";
-
-            $zoneNumberQuery = "SELECT ZoneNumber FROM lot_info WHERE ZoneName = '$zoneName'";
+            $zoneNumberQuery = "SELECT * FROM lot WHERE ZoneNumber = '$zoneNumber' AND date = '$date'";
             $res = $connection->query($zoneNumberQuery);
 
-            // Check if zone name exists / connection
+            // Check if zone number / date combination is in lot
             if ($res->num_rows > 0) {
-
-                $value = $res->fetch_assoc();
-                $number = $value["ZoneNumber"];
             
-                $sql = "SELECT * from $table WHERE ZoneNumber = '$number' AND date = '$date'";
+                $sql = "SELECT capacity from lot_info WHERE ZoneNumber = '$zoneNumber'";
                 $res = $connection->query($sql);
 
-                // Check name and date exist
-                $exists = (bool) $res->fetch_assoc();
+                $valid = $res->fetch_assoc();
+                $validCapacity = $valid["capacity"];
 
-                if (!$exists) {
+                if ($validCapacity < $newCapacity) {
 
-                    echo "<script>alert('Error, zone not found.')</script>";
+                    echo "<script>alert('Error, invalid number of available spaces.')</script>";
                     echo "<script>window.location.href='updateZone.php';</script>";
-                }
+                } else {
 
-                // Query / connection
-                $sql = "UPDATE $table SET";
+                    // Query / connection
+                    $sql = "UPDATE lot SET";
 
-                if (!empty($newCapacity)) {
-                    $sql .= " Space = '$newCapacity'";
-                }
+                    if (!empty($newCapacity)) {
+                        $sql .= " Space = '$newCapacity'";
+                    }
 
-                if (!empty($newRate)) {
+                    if (!empty($newRate)) {
 
-                    $sql .= ", Rate = '$newRate'";
-                }
+                        $sql .= ", Rate = '$newRate'";
+                    }
 
-                if (strlen($sql) > strlen("UPDATE $table SET")) {
+                    if (strlen($sql) > strlen("UPDATE lot SET")) {
 
-                    $sql .= " WHERE ZoneNumber = '$number' AND date = '$date'";
-                    $connection->query($sql);
+                        $sql .= " WHERE ZoneNumber = '$zoneNumber' AND date = '$date'";
+                        $connection->query($sql);
 
-                    // Alert -> wait -> redirect so alert visible
-                    if ($connection) {
+                        // Alert -> wait -> redirect so alert visible
+                        if ($connection) {
 
-                        echo "<script>alert('Values updated.')</script>";
-                        echo "<script>window.location.href='admin.php';</script>";
-                    } else {
+                            echo "<script>alert('Values updated.')</script>";
+                            echo "<script>window.location.href='admin.php';</script>";
+                        } else {
 
-                        echo "<script>alert('Error updating.')</script>";
-                        echo "<script>window.location.href='updateZone.php';</script>";
+                            echo "<script>alert('Error updating.')</script>";
+                            echo "<script>window.location.href='updateZone.php';</script>";
                     }
                 } else {
                     
                     echo "<script>alert('No new values entered.')</script>";
                     echo "<script>window.location.href='updateZone.php';</script>";
                 }
+                }
 
             } else {
-
-                echo "<script>alert('Error, zone not found.')</script>";
+                    
+                echo "<script>alert('Error, zone '$zoneNumber' cannot be updated on date '$date'')</script>";
                 echo "<script>window.location.href='updateZone.php';</script>";
             }
         }
