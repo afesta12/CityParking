@@ -41,7 +41,8 @@ the final project for CSE 3241.
 <!-- Might not need this section?? -->
 
 ## Authors
-
-Contributors names / what they did
-
-<!-- TODO add names / what each person did -->
+<!-- TODO Write what you did etc -->
+  * Maddi Lewis - 
+  * Terry Liu - 
+  * Andrew Festa - HTML, styling, frontend admin functionality
+  * Kai Lun Lin -
