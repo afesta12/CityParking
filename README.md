@@ -42,6 +42,6 @@ the final project for CSE 3241.
 
 ## Authors
 
-Contributors names and contact info
+Contributors names / what they did
 
 <!-- TODO add names / what each person did -->

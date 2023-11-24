@@ -1,3 +1,4 @@
+<!-- Script for admin logout -->
 <?php 
 
     session_start();
@@ -6,7 +7,7 @@
     $_SESSION = array();
     session_destroy();
 
-    // redirect
+    // redirect to home
     header("Location: index.php");
     exit();
 ?>
