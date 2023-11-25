@@ -1,4 +1,3 @@
-<!-- Script for admin logout -->
 <?php 
 
     session_start();

@@ -1,8 +1,4 @@
-<!-- Start session -->
 <?php
-
-    // buffer output to avoid header error
-    ob_start();
     session_start();
 
     // Include database file
