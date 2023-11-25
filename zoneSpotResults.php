@@ -75,8 +75,8 @@
             </form>
         </div>
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 bg-green-200">
+            <table class="w-full text-center text-emerald-400 text-base">
+                <thead class="text-base text-gray-200 bg-emerald-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Zone Number

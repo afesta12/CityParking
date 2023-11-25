@@ -115,8 +115,8 @@
                     Submit Zone Selection
                 </button>
             </form>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 bg-green-200">
+            <table class="w-full text-center text-emerald-400 text-base">
+                <thead class="text-base text-gray-200 bg-emerald-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Zone Number
@@ -154,7 +154,7 @@
                                 // only show zones where lot has chosen date and with available spots
                                 foreach ($zoneArr as $zoneTest) {
                                     if ($zoneTest == $zone && $numSpots > 0) {
-                                        echo '<tr class="bg-white border-b">';
+                                        echo '<tr class="text-emerald-400 bg-green-200 border-b">';
                                         echo "<td class='px-6 py-4'>$zone</td>";
                                         echo "<td class='px-6 py-4'>$numSpots</td>";
                                         echo "<td class='px-6 py-4'>$rate</td>";

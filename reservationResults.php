@@ -37,7 +37,7 @@
         <form action="" method="post" class="flex flex-col items-center">
             <div class="relative overflow-x-auto">
                 <div class="flex items-center justify-between mb-4">
-                    <label for="confNum">Select a reservation to cancel (enter the associated confirmation number):</label>
+                    <label class="font-bold text-emerald-400" for="confNum">Select a reservation to cancel (enter the associated confirmation number):</label>
                     <select name="confNum" id="confNum" class="w-24 bg-white border border-gray-400 hover:border-gray-500 px-2 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <?php
                             $cellphone = $_SESSION["cellphone"];
@@ -59,8 +59,8 @@
                     </button>
                 </div>
                 </form>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 bg-green-200">
+            <table class="w-full text-center text-emerald-400 text-base">
+                <thead class="text-base text-gray-200 bg-emerald-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Name
@@ -109,7 +109,7 @@
             $phone = $row["Phone"];
             
 
-            echo '<tr class="bg-white border-b">';
+            echo '<tr class="bg-green-200 border-b">';
             echo "<td class='px-6 py-4'>$name</td>";
             echo "<td class='px-6 py-4'>$phone</td>";
             echo "<td class='px-6 py-4'>$confirmationNum</td>";
