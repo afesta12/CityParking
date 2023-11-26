@@ -19,9 +19,9 @@
             <div class="text-2xl font-bold">Wonderville Parking</div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                    <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                    <li><a href="/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                    <li><a href="/PHP/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                    <li><a href="/PHP/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                    <li><a href="/PHP/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,7 +29,7 @@
     <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
         <form action="reserveSpot.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <img src="/images/wondervilleLogo.png" alt="" style="display: block; margin: auto;">
+        <img src="/PHP/images/wondervilleLogo.png" alt="" style="display: block; margin: auto;">
             <!-- Name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -99,8 +99,8 @@
                 echo '<script>alert("No lot reserves spots this date.")</script>';
             }
             else {
-                if(isset($_POST["zones"])) {header("Location: zoneSpotResults.php");}
-                else {header("Location: distSpotResults.php");}
+                if(isset($_POST["zones"])) {header("Location: /PHP/zoneSpotResults.php");}
+                else {header("Location: /PHP/distSpotResults.php");}
                 
             }
         }

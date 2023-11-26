@@ -22,11 +22,11 @@
                 <div class="text-2xl font-bold">Wonderville Parking</div>
                 <nav>
                     <ul class="flex space-x-4">
-                        <li><a href="/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
-                        <li><a href="/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
-                        <li><a href="/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                        <li><a href="/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
-                        <li><a href="/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
+                        <li><a href="/PHP/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
+                        <li><a href="/PHP/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
+                        <li><a href="/PHP/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
+                        <li><a href="/PHP/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                        <li><a href="/PHP/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                     </ul>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
     <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
         <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <img src="/images/wondervilleLogo.png" alt="">
+            <img src="/PHP/images/wondervilleLogo.png" alt="">
             <!-- Zone name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="number">
@@ -97,11 +97,11 @@
                         AND date = '$date'";
 
                 echo "<script>alert('Zone $zoneNumber removed on date $date.')</script>";
-                echo "<script>window.location.href='admin.php';</script>";
+                echo "<script>window.location.href='/PHP/admin.php';</script>";
             } else {
 
                 echo "<script>alert('Error removing zone.')</script>";
-                echo "<script>window.location.href='removeZone.php';</script>";
+                echo "<script>window.location.href='/PHP/removeZone.php';</script>";
             }
         }
     }

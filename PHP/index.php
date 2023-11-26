@@ -21,9 +21,9 @@
                 <div class="text-2xl font-bold">Wonderville Parking</div>
                 <nav>
                     <ul class="flex space-x-4">
-                        <li><a href="/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                        <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                        <li><a href="/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                        <li><a href="/PHP/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                        <li><a href="/PHP/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                        <li><a href="/PHP/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                     </ul>
                 </nav>
             </div>
@@ -34,16 +34,16 @@
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <!-- Logo -->
-            <img src="/images/wondervilleLogo.png" alt="Logo for Wonderville Parking">
+            <img src="/PHP/images/wondervilleLogo.png" alt="Logo for Wonderville Parking">
 
             <!-- Spot reservation -->
-            <a href="/reserveSpot.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
+            <a href="/PHP/reserveSpot.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
                             font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  
                             focus:outline-none">
                             Reserve Your Spot
             </a>
             <!-- Current and past reservations -->
-            <a href="/seeReservations.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
+            <a href="/PHP/seeReservations.php" class="text-center text-white bg-blue-500 hover:bg-blue-700 
                             font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  
                             focus:outline-none">
                             See Your Reservations

@@ -18,9 +18,9 @@
             <div class="text-2xl font-bold">Wonderville Parking</div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                    <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                    <li><a href="/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                    <li><a href="/PHP/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                    <li><a href="/PHP/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                    <li><a href="/PHP/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,7 +28,7 @@
     <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- See reservations  -->
         <form action="seeReservations.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <img src="/images/wondervilleLogo.png" alt="">
+        <img src="/PHP/images/wondervilleLogo.png" alt="">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="cellphone">
                     Cellphone #
@@ -63,7 +63,7 @@
             $_SESSION["cellphone"] = $_POST["cellphone"];
             $_SESSION["confirmation"] = $_POST["confirmation"];
     
-            header("Location: reservationResults.php");
+            header("Location: /PHP/reservationResults.php");
         }        
     }
 ?>
