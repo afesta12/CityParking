@@ -202,8 +202,9 @@ if (isset($_POST["zones"])) {
 
                 // Add array to session variable
                 $_SESSION['revenueData'] = $rows;
-                header("Location: /adminRevenue.php");
-                exit();
+                #header("Location: /adminRevenue.php");
+                echo '<script>window.location.href = window.location.href;</script>';
+                #exit();
 
             } else {
                 // Handle error fetching data from the view
