@@ -1,0 +1,24 @@
+version: '3'
+services:
+  php-server:
+    build:
+      context: ./php_dockerfile
+    container_name: my-php-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./php:/var/www/html
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0.17
+    container_name: my-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+    volumes:
+      - ./MySQL:/var/lib/mysql
+      - ./mysql_init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./my.cnf:/etc/mysql/conf.d/custom.cnf
+    ports:
+      - "3306:3306"
