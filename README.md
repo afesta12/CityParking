@@ -98,8 +98,8 @@ After entering this information, checks are made to ensure that no reservations 
   ### Terry Liu
   * Database review
   * PHP reivew
-  * Backend writting
-  * Docker-related feature writting
+  * Backend coding
+  * Docker-related feature coding
    
   ### Andrew Festa
   * HTML
