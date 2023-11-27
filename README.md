@@ -108,3 +108,5 @@ After entering this information, checks are made to ensure that no reservations 
   * Frontend admin functionality
   
   ### Kai Lun Lin
+  * Design database schema
+  * Some queries to retrive data
