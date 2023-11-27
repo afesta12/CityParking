@@ -78,9 +78,9 @@ After entering this information, checks are made to ensure that no reservations 
 ### Installing
 
 * For the docker version setting:
-  Please refer to the following video and documentation links:
-  [Docker documentation tutor](https://docs.google.com/document/d/16U9BM6RFqO6gn4vrq0chD8hIBjz0yG9TfKZV0g5ChBU/edit)
-  [Docker video tutor](https://www.loom.com/share/e530ccd899044ebcb06d328edb49bd89?sid=771870c3-dc17-4deb-b485-0a9a1cc3a18e)
+  Please refer to the following video and documentation links:<br>
+  [Docker documentation tutor](https://docs.google.com/document/d/16U9BM6RFqO6gn4vrq0chD8hIBjz0yG9TfKZV0g5ChBU/edit)<br>
+  [Docker video tutor](https://www.loom.com/share/e530ccd899044ebcb06d328edb49bd89?sid=771870c3-dc17-4deb-b485-0a9a1cc3a18e)<br>
 
 ### Executing program
 
