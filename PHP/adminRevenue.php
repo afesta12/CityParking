@@ -3,6 +3,9 @@
 
     // Include database file
     include("database.php");
+
+    // Carry over date
+    $revenueDate = isset($_SESSION["revenueDate"]) ? $_SESSION["revenueDate"] : date("Y-m-d");
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +51,7 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
                         Date
                     </label>
-                    <input name="date" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                    <input name="date" type="date" value="<?php echo $revenueDate; ?>" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                 </div>
                 <div class="flex justify-center">
                     <button name="zones" class="shadow-md px-8 mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
@@ -202,6 +205,7 @@ if (isset($_POST["zones"])) {
 
                 // Add array to session variable
                 $_SESSION['revenueData'] = $rows;
+                $_SESSION['revenueDate'] = $_POST["date"];
                 echo '<script>window.location.href = window.location.href;</script>';
 
             } else {

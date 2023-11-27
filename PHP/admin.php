@@ -3,6 +3,10 @@
 
     // Include database file
     include("database.php");
+
+    // carry over last entered date
+    $start = isset($_SESSION["startDate"]) ? $_SESSION["startDate"] : date("Y-m-d");
+    $end = isset($_SESSION["endDate"]) ? $_SESSION["endDate"] : date("Y-m-d");
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +54,13 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="start">
                             Start Date
                         </label>
-                        <input name="start" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <input name="start" type="date" value="<?php echo $start; ?>" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                     </div>
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="end">
                             End Date
                         </label>
-                        <input name="end" type="date" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <input name="end" type="date" value="<?php echo $end; ?>" class="appearance-none border border-gray-300 rounded-md py-2 px-4 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                     </div>
                 </div>
                 
@@ -199,6 +203,8 @@ if (isset($_POST["zones"])) {
 
                 // Store rows array into session variable
                 $_SESSION['viewData'] = $rows;
+                $_SESSION['startDate'] = $_POST["start"];
+                $_SESSION['endDate'] = $_POST["end"];
                 echo '<script>window.location.href = window.location.href;</script>';
 
             } else {
