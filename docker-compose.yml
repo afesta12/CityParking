@@ -22,3 +22,4 @@ services:
       - ./my.cnf:/etc/mysql/conf.d/custom.cnf
     ports:
       - "3306:3306"
+    command: ["sh", "-c", "chmod 644 /etc/mysql/conf.d/custom.cnf && docker-entrypoint.sh mysqld"]

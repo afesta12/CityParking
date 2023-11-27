@@ -94,10 +94,3 @@ insert IGNORE into Reservation values
 
 insert IGNORE into Reservation values 
 (NULL, '0002', '0001', '2023-11-11', 4, 'Past');
-
-CREATE OR REPLACE VIEW summary AS SELECT Lot.ZoneNumber, Space, Lot.Rate, COUNT(*) 
-FROM Lot
-JOIN Reservation ON Lot.ZoneNumber = Reservation.ZoneNumber AND Space > 0 
-GROUP BY Lot.ZoneNumber;
-
-CREATE OR REPLACE VIEW available_spot AS SELECT ZoneNumber, Space - COUNT(*) AS 'available' FROM summary;

@@ -20,9 +20,9 @@
             <div class="text-2xl font-bold">Wonderville Parking</div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                    <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                    <li><a href="/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                    <li><a href="index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                    <li><a href="seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                    <li><a href="adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,7 +31,7 @@
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="flex justify-center">
-            <img class="h-32 w-32" src="/images/wondervilleLogo.png" alt="">
+            <img class="h-32 w-32" src="images/wondervilleLogo.png" alt="">
         </div>
         <form action="" method="post" class="flex flex-col items-center">
             <div class="relative overflow-x-auto">
@@ -122,7 +122,7 @@
 ?>
     </table>
     <div class="mt-4 flex justify-center">
-                <a href="/index.php" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded-lg focus:outline-none focus:shadow-outline">
+                <a href="index.php" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded-lg focus:outline-none focus:shadow-outline">
                     Return Home
                 </a>
     </div>

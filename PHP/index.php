@@ -21,9 +21,9 @@
                 <div class="text-2xl font-bold">Wonderville Parking</div>
                 <nav>
                     <ul class="flex space-x-4">
-                        <li><a href="/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                        <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                        <li><a href="/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                        <li><a href="index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                        <li><a href="seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                        <li><a href="adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                     </ul>
                 </nav>
             </div>
