@@ -101,11 +101,15 @@ After entering this information, checks are made to ensure that no reservations 
 
 #### Admin Revenue Report
 
+The admin revenue report consists of an input field where the admin may enter a date in order to display a listing consisting of:
+        
+  * Zone and Date
+  * Total number of designated spots
+  * Number of reservations
+  * The rate
+  * The total revenue from that zone on the entered date
+
 ## Getting Started
-
-### Dependencies
-
-* Describe what to install
 
 ### Installing
 
@@ -118,10 +122,6 @@ After entering this information, checks are made to ensure that no reservations 
 
 * Include step by step processes for anything that isn't 
   super obvious on the site
-
-## Help
-
-<!-- Might not need this section?? -->
 
 ## Authors
 
