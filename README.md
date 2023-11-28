@@ -21,7 +21,7 @@ the final project for CSE 3241.
 
 A user can enter in their name, cellphone, and a date to reserve a parking spot. Note that reservations must be made at least one day in advance, and a lot must reserve spots on the chosen date.
 
-### Search Available Zones
+#### Search Available Zones
 
 A user can select an available zone to reserve their spot in. Note that the zones that appear are ones with available spots and ones that are offered by lots on the chosen date. Available zones are shown in the table that consists of:
 
