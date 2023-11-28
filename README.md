@@ -118,10 +118,15 @@ The admin revenue report consists of an input field where the admin may enter a 
   [Docker documentation tutor](https://docs.google.com/document/d/16U9BM6RFqO6gn4vrq0chD8hIBjz0yG9TfKZV0g5ChBU/edit)<br>
   [Docker video tutor](https://www.loom.com/share/e530ccd899044ebcb06d328edb49bd89?sid=771870c3-dc17-4deb-b485-0a9a1cc3a18e)<br>
 
-### Executing program
+#### Installing the database
 
-* Include step by step processes for anything that isn't 
-  super obvious on the site
+The Wonderville City Parking Manager can be used by following these steps: 
+* Start your PHP server.
+* Open your browser and paste in the path to the install.php file (ex http://localhost:3000/Install/install.php).
+* After following this link, the page will let you know that the City Parking database was created.
+* Next with your server still running, navigate to http://localhost:3000/PHP/index.php
+* From there the database is set up and ready to use.
+
 
 ## Authors
 
