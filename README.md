@@ -144,4 +144,5 @@ The admin revenue report consists of an input field where the admin may enter a 
   
   ### Kai Lun Lin
   * Design database schema
-  * Some queries to retrive data
+  * Design queries SQL to retrive data
+  * Initialization sql file coding
