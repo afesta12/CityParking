@@ -121,7 +121,7 @@ The admin revenue report consists of an input field where the admin may enter a 
 #### Installing the database
 
 The Wonderville City Parking Manager can be used by following these steps: 
-* Start your PHP server.
+* Start your PHP server in the main folder use "C:\PHP\php.exe -S localhost:3000"
 * Open your browser and paste in the path to the install.php file (ex http://localhost:3000/Install/install.php).
 * After following this link, the page will let you know that the City Parking database was created.
 * Next with your server still running, navigate to http://localhost:3000/PHP/index.php
