@@ -126,6 +126,9 @@ The admin revenue report consists of an input field where the admin may enter a 
 ## Authors
 
   ### Maddi Lewis 
+  * HTML
+  * PHP on user pages
+  * Frontend user functionality
 
   ### Terry Liu
   * Database review
