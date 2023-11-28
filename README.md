@@ -16,7 +16,39 @@ the final project for CSE 3241.
 ## Description
 
 ### In Depth User Functionality
-    <!-- TODO write user functionality, possibly include images -->
+
+#### Reserve Your Spot
+
+A user can enter in their name, cellphone, and a date to reserve a parking spot. Note that reservations must be made at least one day in advance, and a lot must reserve spots on the chosen date.
+
+#### Search Available Zones
+
+A user can select an available zone to reserve their spot in. Note that the zones that appear are ones with available spots and ones that are offered by lots on the chosen date. Available zones are shown in the table that consists of:
+
+  * Zone Number
+  * Number of Available Spots
+  * Rate/hr
+
+Once the user submits a zone, a confirmation page appears with their associated confirmation number.
+
+#### Search Distance Between Zones and Venues
+
+A user can select an available zone that appears in the table, similar to Search Available Zones, but they can also select a venue to see the distance between the selected zone and venue.
+
+#### See Your Reservations
+
+A user can enter their number or confirmation number to see their past and present reservations. Reservations are shown in the table that consists of:
+
+  * Name
+  * Phone Number
+  * Confirmation Number
+  * User Number
+  * Zone Number
+  * Date
+  * Rate/hr
+  * Status
+
+A user can also select a confirmation number from their reservations to cancel it. Once cancelled, the status for the associated reservation will change to "Cancelled".
 
 ### In Depth Admin Functionality
     
@@ -69,37 +101,40 @@ After entering this information, checks are made to ensure that no reservations 
 
 #### Admin Revenue Report
 
+The admin revenue report consists of an input field where the admin may enter a date in order to display a listing consisting of:
+        
+  * Zone and Date
+  * Total number of designated spots
+  * Number of reservations
+  * The rate
+  * The total revenue from that zone on the entered date
+
 ## Getting Started
-
-### Dependencies
-
-* Describe what to install
 
 ### Installing
 
 * For the docker version setting:
-  Please refer to the following video and documentation links:
-  [Docker documentation tutor](https://docs.google.com/document/d/16U9BM6RFqO6gn4vrq0chD8hIBjz0yG9TfKZV0g5ChBU/edit)
-  [Docker video tutor](https://www.loom.com/share/e530ccd899044ebcb06d328edb49bd89?sid=771870c3-dc17-4deb-b485-0a9a1cc3a18e)
+  Please refer to the following video and documentation links:<br>
+  [Docker documentation tutor](https://docs.google.com/document/d/16U9BM6RFqO6gn4vrq0chD8hIBjz0yG9TfKZV0g5ChBU/edit)<br>
+  [Docker video tutor](https://www.loom.com/share/e530ccd899044ebcb06d328edb49bd89?sid=771870c3-dc17-4deb-b485-0a9a1cc3a18e)<br>
 
 ### Executing program
 
 * Include step by step processes for anything that isn't 
   super obvious on the site
 
-## Help
-
-<!-- Might not need this section?? -->
-
 ## Authors
 
   ### Maddi Lewis 
+  * HTML
+  * PHP on user pages
+  * Frontend user functionality
 
   ### Terry Liu
   * Database review
   * PHP reivew
-  * Backend writting
-  * Docker-related feature writting
+  * Backend coding
+  * Docker-related feature coding
    
   ### Andrew Festa
   * HTML
@@ -108,3 +143,6 @@ After entering this information, checks are made to ensure that no reservations 
   * Frontend admin functionality
   
   ### Kai Lun Lin
+  * Design database schema
+  * Design queries SQL to retrive data
+  * Initialization sql file coding
