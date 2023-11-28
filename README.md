@@ -16,7 +16,39 @@ the final project for CSE 3241.
 ## Description
 
 ### In Depth User Functionality
-    <!-- TODO write user functionality, possibly include images -->
+
+#### Reserve Your Spot
+
+A user can enter in their name, cellphone, and a date to reserve a parking spot. Note that reservations must be made at least one day in advance, and a lot must reserve spots on the chosen date.
+
+##### Search Available Zones
+
+A user can select an available zone to reserve their spot in. Note that the zones that appear are ones with available spots and ones that are offered by lots on the chosen date. Available zones are shown in the table that consists of:
+
+  * Zone Number
+  * Number of Available Spots
+  * Rate/hr
+
+Once the user submits a zone, a confirmation page appears with their associated confirmation number.
+
+##### Search Distance Between Zones and Venues
+
+A user can select an available zone that appears in the table, similar to Search Available Zones, but they can also select a venue to see the distance between the selected zone and venue.
+
+#### See Your Reservations
+
+A user can enter their number or confirmation number to see their past and present reservations. Reservations are shown in the table that consists of:
+
+  * Name
+  * Phone Number
+  * Confirmation Number
+  * User Number
+  * Zone Number
+  * Date
+  * Rate/hr
+  * Status
+
+A user can also select a confirmation number from their reservations to cancel it. Once cancelled, the status for the associated reservation will change to "Cancelled".
 
 ### In Depth Admin Functionality
     
