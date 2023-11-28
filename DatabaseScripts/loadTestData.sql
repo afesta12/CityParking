@@ -24,9 +24,12 @@ INSERT IGNORE INTO Distance (ZoneNumber, VNumber, Distance) VALUES
 (3, 3, 2);
 
 INSERT IGNORE INTO Lot (ZoneNumber, Date, Space, Rate) VALUES 
-('0001', '2023-11-11', 10, 2);
-INSERT IGNORE INTO Lot (ZoneNumber, Date, Space, Rate) VALUES 
-('0002', '2023-11-11', 10, 2);
+('0001', '2023-11-11', 10, 2), 
+('0001', '2023-12-05', 15, 2), 
+('0002', '2023-11-11', 10, 2), 
+('0002', '2023-11-29', 10, 2), 
+('0002', '2023-12-05', 15, 2), 
+('0003', '2023-12-05', 15, 2);
 
 INSERT IGNORE INTO Reservation (ConformationNum, UNumber, ZoneNumber, Date, Rate, Status) VALUES 
 ('0001', '0001', '0001', '2023-11-11', 2, 'Active'), 
