@@ -24,7 +24,7 @@ Wonderville Parking Management System is a web application built using MySQL, PH
   4. Start your PHP server:  
       a. Open a terminal.  
       b. CD into the `GroupProject` folder.  
-      c. Run the following command to run the PHP server:
+      c. Run the following command with your port number of choice to run the PHP server:
            ```
          C:\PHP\php.exe -S localhost:8080
          ```
@@ -32,12 +32,12 @@ Wonderville Parking Management System is a web application built using MySQL, PH
       a. Open your browser.  
       b. Paste the following link in the URL bar to create and insert relevant schema and testing data.  
            ```
-         http://localhost:3000/Install/install.php
+         http://localhost:8080/Install/install.php
          ```  
         c. Later, the page will let you know that the City Parking database was created and is ready to use.
   6. Navigate to the following link:
       ```
-      http://localhost:3000/PHP/index.php
+      http://localhost:8080/PHP/index.php
       ```
   7. From there the database is set up and ready to use.
 
