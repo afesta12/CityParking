@@ -144,13 +144,18 @@
         $date = $dateRow['Date'];
 
         if ($result1) {
-            $resDate = new DateTime($date);
+            
             $currDate = new DateTime();
+            $resDate = new DateTime($date);
+            $difference = $currDate->diff($resDate);
 
-            $currDate->sub(new DateInterval('P3D'));
+            $dif = $difference->days;
+
+            $formattedResDate = $resDate->format('Y-m-d');
+            echo "<script>alert('$formattedResDate')</script>";
 
             // If at least 3 days before current date...
-            if ($currDate <= $resDate) {
+            if ($dif + 1 >= 3 && $currDate < $resDate) {
                 // Update status to 'Cancelled'
                 $sql3 = "UPDATE Reservation SET Status = 'Cancelled' WHERE ConformationNum = $confNum";
                 $result3 = $connection->query($sql3);
