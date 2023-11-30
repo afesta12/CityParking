@@ -1,7 +1,7 @@
 <?php 
 
-    // Database variables
-    $server = "mysql-db"; // using Docker Compose service name
+    // database variables
+    $server = "localhost";
     $user = "root";
     $password = "mysql";
     $database = "cityParking";
@@ -12,7 +12,7 @@
         // connection variable
         $connection = mysqli_connect($server, $user, $password, $database);
         
-    } catch(mysqli_sql_exception $e) {
+    } catch(mysqli_sql_exception) {
 
         echo "Could not connect to database, please check your credentials.";
     }

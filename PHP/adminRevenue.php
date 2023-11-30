@@ -28,11 +28,11 @@
             <div class="text-2xl font-bold">Wonderville Parking</div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
-                    <li><a href="removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
-                    <li><a href="updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                    <li><a href="adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
-                    <li><a href="adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
+                    <li><a href="/PHP/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
+                    <li><a href="/PHP/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
+                    <li><a href="/PHP/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
+                    <li><a href="/PHP/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                    <li><a href="/PHP/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,7 +43,7 @@
 
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="flex justify-center">
-                <img class="h-32 w-32" src="images/wondervilleLogo.png" alt="">
+                <img class="h-32 w-32" src="/PHP/images/wondervilleLogo.png" alt="">
             </div>
 
             <form action="" method="post" class="flex-col items-center bg-white rounded-md px-8 pt-6 pb-8 mb-4 max-w-md mx-auto">
@@ -170,6 +170,7 @@ if (isset($_POST["zones"])) {
             WHERE
                 space > 0
                 AND Reservation.date = Lot.date
+                AND Reservation.status = 'Active'
             GROUP BY
                 Lot.ZoneNumber, Lot.date, space, Lot.rate";
 

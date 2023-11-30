@@ -1,6 +1,5 @@
 <?php 
     session_start();
-    ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +21,8 @@
                 <nav>
                     <ul class="flex space-x-4">
                         <li><a href="/PHPindex.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                        <li><a href="/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                        <li><a href="adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                        <li><a href="/PHP/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                        <li><a href="/PHP/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                     </ul>
                 </nav>
             </div>
@@ -33,7 +32,7 @@
     <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Admin login  -->
         <form action="adminlogin.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <img src="images/wondervilleLogo.png" alt="">
+            <img src="/PHP/images/wondervilleLogo.png" alt="">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                     Username
@@ -77,9 +76,7 @@
             $_SESSION["password"] = $_POST["password"];
 
             // Redirect to admin dashboard
-            header("Location: admin.php");
-            exit();
+            header("Location: /PHP/admin.php");
         }
     }
-    ob_end_flush();
 ?>

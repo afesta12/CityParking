@@ -7,6 +7,6 @@
     session_destroy();
 
     // redirect to home
-    header("Location: index.php");
+    header("Location: /PHP/index.php");
     exit();
 ?>
