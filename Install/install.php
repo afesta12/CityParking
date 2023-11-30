@@ -7,7 +7,7 @@
     $database = "CITYPARKING";
 
     // Dump into string
-    $sqlDump = file_get_contents("dump.sql");
+    $sqlDump = file_get_contents("newDump.sql");
 
     // Create a new mysqli connection with no database parameter
     $connection = new mysqli($server, $user, $password);

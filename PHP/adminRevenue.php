@@ -170,6 +170,7 @@ if (isset($_POST["zones"])) {
             WHERE
                 space > 0
                 AND Reservation.date = Lot.date
+                AND Reservation.status = 'Active'
             GROUP BY
                 Lot.ZoneNumber, Lot.date, space, Lot.rate";
 

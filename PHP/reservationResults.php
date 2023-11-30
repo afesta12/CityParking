@@ -152,7 +152,6 @@
             $dif = $difference->days;
 
             $formattedResDate = $resDate->format('Y-m-d');
-            echo "<script>alert('$formattedResDate')</script>";
 
             // If at least 3 days before current date...
             if ($dif + 1 >= 3 && $currDate < $resDate) {
