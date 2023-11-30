@@ -21,11 +21,11 @@
                 <div class="text-2xl font-bold">Wonderville Parking</div>
                 <nav>
                     <ul class="flex space-x-4">
-                        <li><a href="/PHP/addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
-                        <li><a href="/PHP/removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
-                        <li><a href="/PHP/updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
-                        <li><a href="/PHP/adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
-                        <li><a href="/PHP/adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
+                        <li><a href="addZone.php" class="hover:underline hover:underline-offset-4">Add Zone</a></li>
+                        <li><a href="removeZone.php" class="hover:underline hover:underline-offset-4">Remove Zone</a></li>
+                        <li><a href="updateZone.php" class="hover:underline hover:underline-offset-4">Update Zone</a></li>
+                        <li><a href="adminRevenue.php" class="hover:underline hover:underline-offset-4">Revenue Report</a></li>
+                        <li><a href="adminLogout.php" class="hover:underline hover:underline-offset-4">Logout</a></li>
                     </ul>
                 </nav>
             </div>
@@ -35,7 +35,7 @@
     <main class="flex flex-col items-center h-screen w-screen bg-green-200">
         <!-- Spot reservation  -->
         <form action="" method="post" class="flex flex-col items-center justify-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <img class="h-32 w-32" src="/PHP/images/wondervilleLogo.png" alt="">
+            <img class="h-32 w-32" src="images/wondervilleLogo.png" alt="">
 
             <!-- Date -->
             <div class="mb-6 w-1/2">
@@ -166,11 +166,11 @@
             if ($connection) {
 
                 echo "<script>alert('$zoneName added')</script>";
-                echo "<script>window.location.href='/PHP/admin.php';</script>";
+                echo "<script>window.location.href='/admin.php';</script>";
             } else {
 
                 echo "<script>alert('Error adding zone.')</script>";
-                echo "<script>window.location.href='/PHP/addZone.php';</script>";
+                echo "<script>window.location.href='/addZone.php';</script>";
             }
         }
     }

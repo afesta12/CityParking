@@ -32,9 +32,9 @@
             <div class="text-2xl font-bold">Wonderville Parking</div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="/PHP/index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
-                    <li><a href="/PHP/seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
-                    <li><a href="/PHP/adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
+                    <li><a href="index.php" class="hover:underline hover:underline-offset-4">Home</a></li>
+                    <li><a href="seeReservations.php" class="hover:underline hover:underline-offset-4">Your Reservations</a></li>
+                    <li><a href="adminLogin.php" class="hover:underline hover:underline-offset-4">Admin Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,7 +42,7 @@
 <main class="flex flex-col items-center h-screen w-screen bg-green-200">
     <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="flex justify-center">
-            <img class="h-32 w-32" src="/PHP/images/wondervilleLogo.png" alt="">
+            <img class="h-32 w-32" src="images/wondervilleLogo.png" alt="">
         </div>
         <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <form action="" method="post" class="flex flex-col items-center">
@@ -213,7 +213,7 @@
             $_SESSION["confNum"] = $confNum;
 
             // go to page that notifies user their spot was reserved w/ confirm # and "return to home" button
-            if ($result5) header("Location: /PHP/spotConfirmation.php");  
+            if ($result5) header("Location: spotConfirmation.php");  
         }
     }
 ?>
