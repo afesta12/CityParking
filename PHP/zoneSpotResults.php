@@ -40,8 +40,8 @@
                     <?php
                         $date = $_SESSION["date"];
                         $connection->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-                        $sql = "SELECT ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
-                                Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Rate FROM Lot GROUP BY ZoneNumber";
+                        $sql = "SELECT Lot.ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
+                        Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Lot.Rate FROM Lot WHERE Lot.Date = '$date'";
                         $result = $connection->query($sql);
 
                         // get zones that allow reservations on chosen date
@@ -92,8 +92,8 @@
                     <?php
                         $date = $_SESSION["date"];
                         $connection->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-                        $sql = "SELECT ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
-                                Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Rate FROM Lot GROUP BY ZoneNumber";
+                        $sql = "SELECT Lot.ZoneNumber, Space - (SELECT count(*) FROM Reservation WHERE Reservation.ZoneNumber = Lot.ZoneNumber and
+                        Reservation.Date = '$date' and Reservation.Status = 'Active') as available, Lot.Rate FROM Lot WHERE Lot.Date = '$date'";
                         $result = $connection->query($sql);
 
                         // get zones that allow reservations on chosen date
@@ -155,7 +155,7 @@
         $userNum = $row['UNumber'];
 
         // get rate
-        $sql3 = "SELECT Rate FROM Lot WHERE ZoneNumber = $zoneNum";
+        $sql3 = "SELECT Rate FROM Lot WHERE ZoneNumber = $zoneNum and Date = '$date'";
         $result3 = $connection->query($sql3);
         $rateRow = $result3->fetch_assoc();
         $rate = $rateRow['Rate'];
