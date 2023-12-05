@@ -72,7 +72,7 @@
                                 Date
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Designated Spots
+                                Designated Spots Remaining
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Number of Reservations
@@ -197,7 +197,7 @@ if (isset($_POST["zones"])) {
                     $rows[] = [
                         'zoneNumber' => $zoneNumber,
                         'date' => $date,
-                        'space' => $space,
+                        'space' => $space - $reservationCount,
                         'reservationCount' => $reservationCount,
                         'rate' => $rate,
                         'revenue' => $revenue,
