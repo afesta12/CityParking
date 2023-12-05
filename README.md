@@ -96,7 +96,7 @@ The admin of Wonderville Parking can log in with the username and password combi
 The admin dashboard consists of an input field where the admin may enter a date or range of dates (entering the same date twice results in a single date) to display a listing consisting of:
         
   * Zone and Date
-  * Total number of designated spots
+  * Total number of designated spots remaining
   * The rate
   * Number of reservable spots taken in that zone
 
@@ -105,14 +105,11 @@ The admin dashboard consists of an input field where the admin may enter a date 
 The admin can add a zone via the add zone page located in the header of the admin dashboard. To add a zone, the admin must enter the following:
 
   * The date of the event
-  * The name of the zone
-  * The zone's capacity (total number of spaces in the zone)
+  * The name of the zone (zone number will be found from name)
   * The number of reservable spots for that date/event combination
   * The rate for the reservable spaces
-  * The venue's name
-  * The distance between the lot and the venue
 
-After entering this information, the zone is added and given a unique zone ID number, and the admin is directed back to the admin dashboard.
+After entering this information, the zone is added and the admin is directed back to the admin dashboard.
   
 #### - Remove A Zone
 
@@ -139,7 +136,7 @@ After entering this information, checks are made to ensure that no reservations 
 The admin revenue report consists of an input field where the admin may enter a date to display a listing consisting of:
         
   * Zone and Date
-  * Total number of designated spots
+  * Total number of designated spots remaining
   * Number of reservations
   * The rate
   * The total revenue from that zone on the entered date
